@@ -1,0 +1,44 @@
+
+Hi, How are you?
+DO NOT answer that!
+I am the DM (that means Dungeon Master)
+I will be here to guide you and your nerdy best friend's through my world of Cargorth.
+To be more specific;
+The Kingdom of Aidon, The most advanced Kingdom there is!
+I have already gone ahead and made most of your character sheet, now we just need to wait for the other two.
+One hour later....
+            --Step 1--
+It would appear as though they are not going to show up so it will be just you and me
+Are you okay with that?
+    --Choice 1--
+"Yes"
+Brilliant, then just enter your character's name below: 
+[Step 2]
+    --Choice 2--
+"No"
+[Step 1_1]
+            --Step 1_1-- ## ADD Fun Loop Claus To "I Cant Stop You From Doing That"
+Well you don't really have a choice, unless you want to leave the game of course. I cant stop you from doing that.
+Do you want to exit the game? 
+    --Choice 1--
+"Yes"
+Okay, goodbye
+[GiveUpBeg()]
+    --Choice 2--
+"No"
+Then enter in your character's name below:
+Okay, on with the game then.
+[Step 2]
+            --Step 2--
+What a wonderful name ' + pStat[0] + '. Your stats are as follows:
+Health Points:
+Armor Class:
+Class(Level):
+A few thing's you should know from the start
+You have 1 HP Potion
+That HP Potion gives you ' + str(potion) + ' HP
+You recover 3 HP after defeating mob's
+You recover 5 HP once reaching your Quest Destination
+Press Enter when you are ready to start
+Alright, good luck and have fun
+_____________________________________________________________________________________________________________

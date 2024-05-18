@@ -1,0 +1,35 @@
+
+As you awaken in your room at the Drunken Cabbage Inn, the smell of bacon fills your nose
+The sound's of cheery conversations and laughing can be heard faintly through the floor boards of your room.
+            --Step 1--
+    --Choice1--
+"Why am I here?"
+Your old childhood friend Gilernadel would like to speak with you. He is downstairs. 
+    --Choice2--
+"Go downstairs."
+[Step 2]
+            --Step 2--
+As you head downstairs you see a human wizard wearing blue robes with red fire pattern's along his robes, he has short dark brown hair and pale white skin.
+He is about 28 years old and he has been your friend for pretty much your whole life, you grew up together, as you walk over to him he looks up, smiles and says;
+"Ah, awake at last my friend. As you probably remember a Nothic waltz into my home, killed my assistant and collapsed most of the tunnel's that lead
+throughout my laboratory. I would like you to kill the Beast and bring me it's head, I will pay you a handsome 100gp and 50pp, what do you say
+    --Choice 1--
+"Yes"
+[Step 3]
+    --Choice 2--
+"Not right now"
+[Step 2_1]
+            --Step 2_1--
+Okay, would you like to exit the game?
+    --Choice 1--
+"Yes"
+Okay goodbye
+[GiveUpBeg()]
+    --Choice 2--
+"No"
+Okay I will pause the game here.
+Press Enter when you are ready to resume
+[Intro()]
+            --Step 3--
+"Excellent!" Gilernadel exclaims with a wide smile and he walks with you to the gates of Nestville he says;
+"I will be waiting in the Drunken Cabbage for when you return, safe travel's my friend"

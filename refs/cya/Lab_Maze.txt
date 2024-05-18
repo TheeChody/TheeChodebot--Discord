@@ -1,0 +1,113 @@
+
+            --Step 1--
+As you arrive to Gilernadel's laboratory the stench of rotten flesh and death filter through your nose and fills your lungs.
+You continue to walk into the cave, the smell only getting worse and in the dim light;
+    --Choice 1--
+You come to a 4-way intersection of tunnels.
+Do you:
+"Go Straight"
+Straight it is
+[Step 2]
+    --Choice 2--
+"Go Left"
+[Step 1_1]
+    --Choice 3--
+"Turn around and leave"
+[GiveUp()]
+    --Choice 4--
+"Go Right"
+[Step 1_2]
+            --Step 1_1--
+As you turn left you notice that the smell seems to fade just a bit and you can see that the passage turns right about 10 feet ahead
+What do you do?
+    --Choice 1--
+"turn right"
+You turn right
+[Step 1_1.2]
+    --Choice 2--
+"Go back to the split"
+Okay going back to the split
+[Step 1]
+            --Step 1_1.2--
+    --Choice 1--
+As you walk down the passage and turn right you notice that it leads to a dead end.
+What do you do?
+"Go back to the split"
+You trace your steps and arrive at the split.
+[Step 1]
+    --Choice 2--
+"Do Nothing"
+[GiveUp()]
+            --Step 1_2--
+Turning right, you notice a hallowed out area. Do you:
+    --Choice 1--
+"Explore"
+Okay, lets check it out.
+[Step 1_2.2]
+    --Choice 2--
+"Continue along the passage"
+Continuing along the passageway.
+[Step 1_3]
+    --Choice 3--
+"Turn around"
+Okay heading back
+[Step 1]
+            --Step 1_2.2--
+**Mimic Fight**
+You found a key from the Mimic's dead body. Wonder what that does.
+[Step 1_2.3]
+            --Step 1_2.3--
+Do you want to continue along this passage or head back?
+    --Choice 1--
+"Continue"
+[Step 1_3]
+    --Choice 2--
+"Head Back"
+Okay heading back
+[Step 1]
+            --Step 1_3
+As you continue along, your foot slips on some loose ground.
+**Roll for survival chance**
+**Survive**
+You barely kept it together. You should turn back.
+[Step 1]
+**Die**
+You can't recover and fall to your death.
+[YouLoose()]
+            --Step 2--
+Whilst walking down the passage you notice that the smell of death and decay grows stronger and as you come closer to another fork in the passage
+    --Choice 1--
+"Go Left"
+Left it is
+[FinBoss()]
+    --Choice 2--
+"Go Right"
+[Step 2_1]
+    --Choice 3--
+"Go Back"
+[Step 2]
+            --Step 2_1--
+You turn right and come to another T intersection. Do you:
+    --Choice 1--
+"See whats to the left"
+Going left
+[Step 2_1.2]
+    --Choice 2--
+"See whats to the right"
+Going right
+[Step 2_1.3]
+    --Choice 3--
+"Go back a step"
+Okay we are headed back a step
+[Step 2]
+    --Choice 4--
+"Give up"
+[Step GiveUp]
+            --Step 2_1.2--
+You head left, and about 50ft in you discover a ledge. 
+You stop, look down and out of no where a Skeleton pushes you off and you tumble to your unexpected death./-.
+[YouLoose()]
+            --Step 2_1.3--
+After defeating the skeleton, you stumble into a fairly large chest.
+**IF Player has key, player can open chest**
+Chest gives super health potion and + 2 attack

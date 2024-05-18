@@ -1,0 +1,12 @@
+
+After slaying the Nothic and cutting it's head off you return to Nestville and head for the Drunken Cabbage.
+You spot Gilernadel sitting at a table drinking a pint, and approach him.
+He thanks you for slaying the Nothic and asks to hear about your adventure.
+    --Choice 1--
+Tell Gilernadel about your adventure?
+"Yes"
+You only share about how confusing his Laboratory can be at night and slaying the Nothic, then collect your rewards and head upstairs to sleep.
+[Credits()]
+    --Choice 2 --
+"No"
+You tell Gilernadel to fuck off after collecting your rewards, and head upstairs to sleep.

@@ -1,0 +1,55 @@
+
+Turning left yield's a strong stench of just rotten flesh and decay and the further down that passage you travel the stronger the smell gets, and after a couple of twists and turns you hear chewing.
+As you get closer you see a 7ft creature, that appears to have various spikes on its back, its black sickly decaying flesh blending in almost perfectly with the walls of the cave.
+If it wasn't for the glowing reflection on the cave floor and the dried blood on its claws.
+It hasn't noticed you yet. Maybe you could make a surprise attack on it.
+
+Press Enter to enter the Nothic's lair, and prepare a surprise attack
+            --[End FinBoss]--
+
+            --[Start YouLoose()]--
+As your foe hits you one final time and you fall to the ground vision blurry, the last thing you see is your own blood pooling around, then darkness.
+            --[End YouLoose()]--
+
+            --[Start GiveUp()]--
+Embarrassment and shame fill you as you realize, even though no one saw this and you could've clearly turned around and chosen a new path;
+you refuse to turn around and just stand there doing nothing, until either the Nothic comes and eats you or you die of thirst or hunger.
+            --[End GiveUp()]--
+
+            --[Start GiveUpBeg()]--
+What a shame you are giving up so early. Oh well, better now than waste everyone's time.
+            --[End GiveUpBeg()]--
+
+            --[Start Mob Lines]--
+        --(Start Fight Lines)--
+    --Mimic--
+As you approach the chest and open it, the chest opens revealing hundreds of sharp teeth and a tongue and it bites your arm latching onto you, your left arm is now trapped in it's mouth
+    --1 Skeleton--
+As you continue down the passage you spot a Skeleton walking towards you.
+    --1 Bandit--
+A Bandit jumps onto the path in front of you, demanding that you fight him
+    --1 Orc--
+An Orc walks onto the path blocking you from continuing, they brandish their weapon and charge at you!
+    --2 Bandits--
+Two Bandits's surround you, the one in front of you says "Oi' you there, we are gonna take your stuff and leave you dead in the ditch"
+    --2 Skeletons--
+As you continue down the passage you spot two Skeletons walking towards you.
+        --(End Fight Lines)--
+
+        --(Start Death Lines)--
+    --Mimic death--
+As you plunge your sword into the mimic it falls limp to the ground lifeless, releasing your arm
+    --Skeleton death--
+With this strike the skeleton falls down to the ground in a pile of bones, whatever necromantic magic leaving it's bones
+    --Beholder death--
+You strike the beholder in it's main eye and it lets out a loud screem of pain before it dies, falling to the ground
+    --Dwarf death--
+You decapitate the final dwarf and from it's neck a spray of blood erupts and both the head and body fall with a splat on the ground
+    --Bandit Death--
+With your final strike the bandit drops to the ground, lifeless
+    --Orc Death--
+As you strike the orc one final time, it falls to the ground and expires
+    --Nothic Death--
+The Nothic takes your final blow with a maniacal cackle, laughing insanely as it dies
+        --(End Death Lines)--
+            --[End Mob Lines]--

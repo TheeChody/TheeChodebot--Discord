@@ -183,6 +183,7 @@ class EconomyData(Document):
     highest_gambling_lost = DynamicField(default=0)
     total_gambling_won = DynamicField(default=0)
     total_gambling_lost = DynamicField(default=0)
+    twitch_id = IntField(default=0)
 
 
 class GuessChannel(Document):
@@ -338,6 +339,17 @@ class TriviaQuestions(Document):
     grandtotal = DynamicField(default=666)
     gameswon = DynamicField(default=0)
     gameslost = DynamicField(default=0)
+
+
+class Users(Document):
+    user_id = IntField(primary_key=True)
+    user_name = DynamicField(default="")
+    user_login = DynamicField(default="")
+    user_discord_id = IntField(default=0)
+    user_points = IntField(default=0)
+    first_chat_date = DateTimeField(default=None)
+    latest_chat_date = DateTimeField(default=None)
+    meta = {"db_alias": "Twitch_Database"}
 
 
 class WarningsLoggerChannel(Document):

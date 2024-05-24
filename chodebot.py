@@ -761,5 +761,5 @@ async def main():
         logger.error(f"{formatted_time}: Bot could not be started\n{e}")
 
 
-if __name__ == "__main__":
+if __name__ == "__main__":  # Pretty sure we do this to prevent 'cogs' from running thee bot when referencing code/snippets from thee '__main__' file
     asyncio.run(main())

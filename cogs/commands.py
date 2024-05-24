@@ -3,10 +3,11 @@ import random
 import discord
 from pytube import YouTube
 from discord.ext import commands
-from cogs.mondocs import EconomyData
+from cogs.mondocs import EconomyData, Users
 from pyprobs import Probability as pr
+from mongoengine import connect, disconnect
 from cogs.economy import add_points, remove_points
-from chodebot import perm_check, fortime, logger, guifo, ranff, ErrorMsgOwner, OWNERTAG, PermError, main_path
+from chodebot import perm_check, fortime, logger, guifo, ranff, ErrorMsgOwner, OWNERTAG, PermError, main_path, mongo_login_string
 
 
 yt_filepath = f"{main_path}/yt_downloads"
@@ -109,6 +110,67 @@ class CustCommands(commands.Cog):
             await ctx.reply(f"I probably won't implement this, I planned to back before I rewrote the backend")
         else:
             return
+
+    @commands.command()
+    async def link_twitch(self, ctx, link_id):
+        """To Link Discord ID with twitch Database"""
+        def shutdown():
+            disconnect(alias="Twitch_Database")
+
+        prev_author = ctx.author
+        await ctx.message.delete()
+        usersperms = await perm_check(ctx, ctx.guild.id)
+        if usersperms is None:
+            return
+        if not link_id.isdigit():
+            await ctx.channel.send(f"{prev_author.mention} Link_ID Isn't a number! Try again")
+            return
+        try:
+            economy_document = EconomyData.objects.get(author_id=ctx.author.id)
+        except Exception as e:
+            if FileNotFoundError:
+                try:
+                    economy_data = self.bot.channel_ids.get_collection('economy_data')
+                    new_document = EconomyData(author_id=int(ctx.author.id), author_name=ctx.author.name,
+                                               guild_name=ctx.guild.name)
+                    new_document_dict = new_document.to_mongo()
+                    economy_data.insert_one(new_document_dict)
+                    economy_document = EconomyData.objects.get(author_id=ctx.author.id)
+                except Exception as f:
+                    formatted_time = await fortime()
+                    logger.error(f"{formatted_time}: Error creating new economy data sheet for ({ctx.author.id}/{ctx.author.name}) -- {f}")
+                    return
+            else:
+                formatted_time = await fortime()
+                logger.error(f"{formatted_time}: Error fetching/creating new economy data sheet for ({ctx.author.id}/{ctx.author.name}) -- {e}")
+                return
+        try:
+            twitch_database = connect(db="twitch", host=mongo_login_string, alias="Twitch_Database")
+            twitch_database.get_default_database("twitch")
+        except Exception as e:
+            formatted_time = await fortime()
+            logger.error(f"{formatted_time}: Error connecting twitch_database -- {e}")
+            shutdown()
+            return
+        try:
+            twitch_user_doc = Users.objects.get(user_discord_id=int(link_id))
+        except Exception as e:
+            if FileNotFoundError:
+                await ctx.channel.send(f"{prev_author.mention} you have to initiate thee link via twitch while TheeChody is live.")
+                shutdown()
+                return
+            else:
+
+                formatted_time = await fortime()
+                logger.error(f"{formatted_time}: Error finding twitch_user_doc -- {e}")
+                shutdown()
+                return
+        economy_document.update(twitch_id=twitch_user_doc['user_id'])
+        economy_document.save()
+        twitch_user_doc.update(user_discord_id=ctx.author.id)
+        twitch_user_doc.save()
+        await ctx.channel.send(f"{prev_author.mention} Link Successful!!")
+        shutdown()
 
     @commands.command()
     async def ping(self, ctx):

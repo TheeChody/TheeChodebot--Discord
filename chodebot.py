@@ -34,12 +34,18 @@ from mongoengine import connect, disconnect, DEFAULT_CONNECTION_NAME
 
 
 def setup_logger(name, log_file, level=logging.INFO):
-    handler = logging.FileHandler(log_file)
-    console_handler = logging.StreamHandler()
     logger = logging.getLogger(name)
+    if name == "logger":
+        if os.path.exists(log_file):
+            new_name = f"{log_file[:-4]}--{datetime.datetime.now().strftime('%y-%m-%d-%H-%M-%S')}.log"
+            os.rename(log_file, f"log_arch\\{new_name}")
+        handler = logging.FileHandler(log_file, mode="w", encoding="utf-8")
+        console_handler = logging.StreamHandler()
+        logger.addHandler(console_handler)
+    else:
+        handler = logging.FileHandler(log_file)
     logger.setLevel(level)
     logger.addHandler(handler)
-    logger.addHandler(console_handler)
     return logger
 
 
@@ -383,9 +389,7 @@ async def perm_check(ctx, guildid):
 
 async def fortime():
     try:
-        nowtime = datetime.datetime.now()
-        formatted_time = nowtime.strftime('%Y-%m-%d %H:%M:%S')
-        return formatted_time
+        return str(datetime.datetime.now().strftime('%y-%m-%d %H:%M:%S'))
     except Exception as e:
         logger.error(f"Error creating formatted_time -- {e}")
         return None

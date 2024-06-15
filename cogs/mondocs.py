@@ -1,5 +1,29 @@
 from discord.ext import commands
-from mongoengine import Document, DateTimeField, BooleanField, DynamicField, IntField, StringField, ListField  #, FloatField
+from mongoengine import Document, DateTimeField, BooleanField, DynamicField, IntField, StringField, ListField, FloatField
+
+
+class ChannelInfo(Document):
+    guild_id = IntField(primary_key=True)
+    guild_name = DynamicField(default="")
+    guild_owner_id = IntField(default=0)
+    guild_owner_name = DynamicField(default="")
+    guild_owner_nick_name = DynamicField(default="")
+
+    mod_role_id = IntField(default=0)
+    norm_role_id = IntField(default=0)
+
+    channel_id_logs = IntField(default=0)
+    channel_id_count = IntField(default=0)
+    channel_id_cya = IntField(default=0)
+    channel_id_gen_dir = IntField(default=0)
+    channel_id_guess_num = IntField(default=0)
+    channel_id_guess_word = IntField(default=0)
+    channel_id_hangman = IntField(default=0)
+    channel_id_sentence = IntField(default=0)
+    channel_id_trivia = IntField(default=0)
+    channel_id_ignore = ListField(default=[])
+
+    welcome_message = DynamicField(default="")
 
 
 class CountChannel(Document):
@@ -343,10 +367,13 @@ class TriviaQuestions(Document):
 
 class Users(Document):
     user_id = IntField(primary_key=True)
+    user_discord_id = IntField(default=0)
     user_name = DynamicField(default="")
     user_login = DynamicField(default="")
-    user_discord_id = IntField(default=0)
+    user_level = IntField(default=1)
+    user_xp_points = FloatField(default=0)
     user_points = IntField(default=0)
+    user_pp = ListField(default=[None, None, ""])
     first_chat_date = DateTimeField(default=None)
     latest_chat_date = DateTimeField(default=None)
     meta = {"db_alias": "Twitch_Database"}

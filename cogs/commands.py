@@ -1,6 +1,7 @@
 import os
 import random
 import discord
+import datetime
 from pytube import YouTube
 from discord.ext import commands
 from cogs.mondocs import EconomyData, Users
@@ -136,6 +137,7 @@ class CustCommands(commands.Cog):
                     new_document_dict = new_document.to_mongo()
                     economy_data.insert_one(new_document_dict)
                     economy_document = EconomyData.objects.get(author_id=ctx.author.id)
+                    pass
                 except Exception as f:
                     formatted_time = await fortime()
                     logger.error(f"{formatted_time}: Error creating new economy data sheet for ({ctx.author.id}/{ctx.author.name}) -- {f}")
@@ -160,7 +162,6 @@ class CustCommands(commands.Cog):
                 shutdown()
                 return
             else:
-
                 formatted_time = await fortime()
                 logger.error(f"{formatted_time}: Error finding twitch_user_doc -- {e}")
                 shutdown()
@@ -334,8 +335,43 @@ class CustCommands(commands.Cog):
     @commands.command()
     async def dailychode(self, ctx):
         """Daily points getter thingy"""
-        await ctx.reply(f"Nope this isn't making a return anytime soon. FUCK TIME. This is back of thee burner on {OWNERTAG}'s focus levels atm")
-        return
+        def fortime_long(time):
+            return time.strftime("%y:%m:%d:%H:%M:%S")[1:]
+
+        async def get_long_seconds(time):
+            y, mo, d, h, mi, s = time.split(":")
+            return int(y) * 31536000 + int(mo) * 2628288 + int(d) * 86400 + int(h) * 3600 + int(mi) * 60 + int(s)
+
+        usersperms = await perm_check(ctx, ctx.guild.id)
+        if usersperms is None:
+            await ctx.reply(PermError)
+            return
+        try:
+            document = EconomyData.objects.get(author_id=ctx.author.id)
+            now_time = datetime.datetime.now()
+            if document['last_daily_done'] is not None:
+                last_seconds = await get_long_seconds(fortime_long(document['last_daily_done']))
+                now_time_seconds = await get_long_seconds(fortime_long(now_time))
+                seconds_left = abs(now_time_seconds - last_seconds)
+                if seconds_left < 86400:
+                    await ctx.reply(f"You cannot do your daily yet, next available in {datetime.timedelta(seconds=86400 - seconds_left)}")
+                    return
+            new_points_value = document['points_value'] + 100
+            if 100 > document['highest_gained_value']:
+                document.update(highest_gained_value=100)
+                document.save()
+            document.update(last_daily_done=datetime.datetime.now(), points_value=new_points_value, last_gained_value=100)
+            document.save()
+            await ctx.reply(f"You have gained 100 points")
+        except Exception as e:
+            formatted_time = fortime()
+            logger.error(f"{formatted_time}: Error processing dailychode -- {e}")
+            await ctx.reply(ErrorMsgOwner.format(OWNERTAG, "Error logged background."))
+            return
+
+        # await ctx.reply(f"Nope this isn't making a return anytime soon. FUCK TIME. This is back of thee burner on {OWNERTAG}'s focus levels atm")
+        # return
+
         # ToDo: Fix This BulllllllllllllShit
         # usersperms = await perm_check(ctx, ctx.guild.id)
         # if usersperms is None:
@@ -405,6 +441,7 @@ class CustCommands(commands.Cog):
 
     # ToDo Add fun minigames with commands like twitch games
     # ToDo tag, prank, fight, pants, poke, etc
+    # ToDo Birthdays
 
     ########## End of Commands ##########
 
